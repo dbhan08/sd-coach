@@ -35,13 +35,13 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 2 of 8. Mock mode is live; the other three are still stubs. See [SESSIONS.md](SESSIONS.md) for the build plan.
+Session 3 of 8. Mock and Tutor are live; Drill and Teach are still stubs. See [SESSIONS.md](SESSIONS.md) for the build plan.
 
 | Session | What lands | Status |
 |---|---|---|
 | 1 | Skill skeleton, routing, README v1 | done |
 | 2 | Mock mode | done |
-| 3 | Tutor mode | — |
+| 3 | Tutor mode | done |
 | 4 | Drill mode | — |
 | 5 | Teach mode + concept wiki | — |
 | 6 | Company calibration (Netflix, Google, Meta) | — |
@@ -58,6 +58,12 @@ At the end you get a scorecard at `sessions/<date>-<slug>/scorecard.md` that:
 - Tells you whether you cleared the L3 bar and the L4 bar, and what's missing for L4
 
 The session folder also contains `transcript.md` (full back-and-forth) and `hld.mmd` (Mermaid of your HLD as captured during phase 3).
+
+## How Tutor works
+
+`/sd-coach tutor <company?> <topic?>` opens a Socratic walkthrough — no clock, no score, no interviewer character. Tutor probes with questions and **interrupts you** when you commit a structural mistake (wrong primitive, unbounded growth, missing back-pressure, wrong consistency model, etc.). You can interrupt back any time with "wait, why X?" or "pause — explain X" — that last one detours into Teach mode and returns to where you left off.
+
+Use Tutor when you want to learn the topic, not perform under pressure. Use Mock when you want to know if you'd pass the interview today.
 
 ## How it works
 

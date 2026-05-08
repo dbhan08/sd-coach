@@ -41,15 +41,18 @@ Spec complete. Live verification on user.
 
 ## Session 3 — Tutor mode
 
-- [ ] `modes/tutor.md` — Socratic prompt with bidirectional-interrupt protocol
-- [ ] Interrupt rules: Claude interrupts when I make a structural mistake (define what counts), I can interrupt to ask anything mid-flow
-- [ ] Detour-into-Teach hook: "pause — explain X" pauses the design, runs Teach mode (Session 5 will fully wire this; stub is fine for now), resumes
-- [ ] Session log: `sessions/YYYY-MM-DD-<topic>/tutor-transcript.md` with `[interrupt]` and `[detour]` annotations
-- [ ] "What this mode does NOT do": no scoring, no time pressure, no performative interviewer character
-- [ ] Run one real Tutor walk on a prompt I haven't fully solved before
-- [ ] Update `README.md` with Tutor usage example
+- [x] `modes/tutor.md` — Socratic prompt with bidirectional-interrupt protocol
+- [x] Tutor-side interrupt trigger list: wrong primitive, unbounded growth, missing back-pressure, wrong consistency model, skipped failure mode, conflated layers
+- [x] User-side interrupts: "wait, why X?", "pause — explain X" (detour to Teach), "skip this", "back up"
+- [x] Detour-into-Teach hook: pauses, marks `[detour: <topic>]`, runs Teach mode behavior, resumes at decision point
+- [x] Session log: `sessions/<date>-tutor-<slug>/tutor-transcript.md` with `[tutor-interrupt]`, `[user-interrupt]`, `[detour]` annotations
+- [x] "What this mode does NOT do": no scoring, no clock, no in-character interviewer, no silence through structural mistakes
+- [x] Update `README.md` with Tutor usage section + Mock-vs-Tutor differentiation
+- [ ] **Runtime verification (on user):** start a real Tutor walk, deliberately make a structural mistake, confirm Tutor interrupts; ask "explain X" mid-flow, confirm detour and resume work
 
 **Done when:** Tutor walks a real design, interrupts me on at least one structural mistake, handles a mid-flow question, and the transcript shows both interrupts and at least one detour stub.
+
+Spec complete. Live verification on user.
 
 ---
 
