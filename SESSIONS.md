@@ -109,14 +109,16 @@ Spec complete. Live verification on user.
 
 ## Session 7 — Rubrics + L3–L4 calibration pass
 
-- [ ] `rubrics/hld.md` — explicit dimensions (scoping, component breakdown, data flow, scaling, tradeoffs) with L3–L4 line items
-- [ ] `rubrics/lld.md` — interface design, data model, error handling, observability hooks
-- [ ] `rubrics/capacity-estimation.md` — back-of-envelope steps, when to skip, common traps
-- [ ] All modes reference rubrics by file + dimension when scoring/feedback (e.g., "rubrics/hld.md → scaling: ...")
-- [ ] L3–L4 floor/ceiling check: re-run a Session 2 prompt; difficulty should match an entry-to-mid-level interview
-- [ ] Update `README.md` with a "calibration philosophy" note
+- [x] `rubrics/hld.md` — expanded with explicit L3/L4 hit/partial/miss criteria for each of: scoping, component-breakdown, data-flow, scaling, tradeoff-articulation, communication. Each dimension also lists common traps and "clears L5+" for awareness.
+- [x] `rubrics/lld.md` — same expansion for: interface-design, data-model, error-handling, concurrency, observability
+- [x] `rubrics/capacity-estimation.md` — same expansion for: assumptions, math, sanity-checks, growth, relevance
+- [x] Mode citation format already wires file + dimension (specified in mock.md scorecard format and across all modes' "always reference rubrics" rules)
+- [x] Update `README.md` with a "Calibration philosophy" section explaining L3-vs-L4 separate-line scoring
+- [ ] **Runtime verification (on user):** start a mock, get to scorecard, confirm scorecard cites at least 2 dimensions by file + name AND distinguishes L3 hit vs L4 partial on at least one dimension
 
 **Done when:** every scorecard from every mode cites at least 2 rubric dimensions by file + name, and difficulty floor/ceiling reads as L3–L4-appropriate.
+
+Spec complete. Live verification on user.
 
 ---
 

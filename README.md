@@ -35,7 +35,7 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 6 of 8. All four modes are live; concept wiki is seeded with 5 notes; company calibration files are in for Netflix, Google, Meta. See [SESSIONS.md](SESSIONS.md) for the build plan.
+Session 7 of 8. All four modes live; concept wiki seeded; company calibration in; rubrics expanded to explicit L3/L4 line items. See [SESSIONS.md](SESSIONS.md) for the build plan.
 
 | Session | What lands | Status |
 |---|---|---|
@@ -45,7 +45,7 @@ Session 6 of 8. All four modes are live; concept wiki is seeded with 5 notes; co
 | 4 | Drill mode | done |
 | 5 | Teach mode + concept wiki | done |
 | 6 | Company calibration (Netflix, Google, Meta) | done |
-| 7 | Rubrics + L3–L4 calibration pass | — |
+| 7 | Rubrics + L3–L4 calibration pass | done |
 | 8 | DEMO + README polish + sample sessions | — |
 
 ## How Mock works
@@ -96,6 +96,17 @@ Each company file (`companies/<name>.md`) sets:
 - Anti-patterns the mode flags explicitly when it sees them
 
 Seeded: [netflix](companies/netflix.md), [google](companies/google.md), [meta](companies/meta.md). To add another, copy [companies/_template.md](companies/_template.md) and fill it in.
+
+## Calibration philosophy
+
+Modes score against **L3–L4** specifically — entry-level SDE1 through mid-level SDE2. Each rubric dimension has explicit L3 hit / L3 partial / L3 miss criteria, and the same for L4. The "clears L5+" notes in the rubrics are for awareness only — the modes do not grade against L5.
+
+What this means concretely:
+- A "hit" doesn't mean perfect — it means cleared the bar for the level being scored.
+- The scorecard tells you whether you cleared the L3 bar AND whether you cleared the L4 bar, separately. You can be L3-hit / L4-partial on the same dimension.
+- The "to clear L4" section of the scorecard is the actionable part — specific things to add to your answer, calibrated to your current target.
+
+If you want to study at L5+ later, the rubrics name what would clear that bar in each dimension — but no mode will judge you against it unless you ask.
 
 ## How it works
 
