@@ -35,14 +35,14 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 3 of 8. Mock and Tutor are live; Drill and Teach are still stubs. See [SESSIONS.md](SESSIONS.md) for the build plan.
+Session 4 of 8. Mock, Tutor, and Drill are live; Teach is still a stub. See [SESSIONS.md](SESSIONS.md) for the build plan.
 
 | Session | What lands | Status |
 |---|---|---|
 | 1 | Skill skeleton, routing, README v1 | done |
 | 2 | Mock mode | done |
 | 3 | Tutor mode | done |
-| 4 | Drill mode | — |
+| 4 | Drill mode | done |
 | 5 | Teach mode + concept wiki | — |
 | 6 | Company calibration (Netflix, Google, Meta) | — |
 | 7 | Rubrics + L3–L4 calibration pass | — |
@@ -64,6 +64,12 @@ The session folder also contains `transcript.md` (full back-and-forth) and `hld.
 `/sd-coach tutor <company?> <topic?>` opens a Socratic walkthrough — no clock, no score, no interviewer character. Tutor probes with questions and **interrupts you** when you commit a structural mistake (wrong primitive, unbounded growth, missing back-pressure, wrong consistency model, etc.). You can interrupt back any time with "wait, why X?" or "pause — explain X" — that last one detours into Teach mode and returns to where you left off.
 
 Use Tutor when you want to learn the topic, not perform under pressure. Use Mock when you want to know if you'd pass the interview today.
+
+## How Drill works
+
+`/sd-coach drill <track>` runs 5 rapid reps on one of three tracks: `capacity`, `component`, or `failure-modes`. Each rep is one prompt → your answer → a short model answer → score (hit/partial/miss). Difficulty starts at medium and steps up after two clean hits or down after two misses. Logs to `sessions/<date>-drill-<track>/log.md`.
+
+Use Drill when you want reps on one specific skill — capacity math, single-component design, or failure-cascade reasoning — without the overhead of a full design walk.
 
 ## How it works
 

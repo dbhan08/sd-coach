@@ -58,14 +58,18 @@ Spec complete. Live verification on user.
 
 ## Session 4 — Drill mode
 
-- [ ] `modes/drill.md` — three drill tracks: capacity estimation, single-component deep-dive, failure-mode walk
-- [ ] Track-specific prompt patterns + difficulty floor/ceiling for L3–L4
-- [ ] In-session difficulty adjustment: easier if I miss two in a row, harder if I nail two in a row
-- [ ] Session log: `sessions/YYYY-MM-DD-drill-<track>/log.md` with prompt, my answer, the model answer, score
-- [ ] Run 5 reps on the capacity-estimation track as the test artifact
-- [ ] Update `README.md` with Drill usage example
+- [x] `modes/drill.md` — three tracks: capacity, component, failure-modes
+- [x] Track-specific prompt patterns + L3–L4 difficulty floor (easy) and ceiling (hard)
+- [x] In-session difficulty adjustment: drop after 2 consecutive misses, step up after 2 consecutive hits, capped at floor/ceiling
+- [x] Per-rep flow: prompt → user answer → score → 2–4 sentence model answer (model answer comes AFTER user answers)
+- [x] Session log: `sessions/<date>-drill-<track>/log.md` with quoted user answers, model answers, scores, end-of-drill tally and trend
+- [x] "Behavior rules NEVER": no >5 reps, no generous "hits", no drift into Tutor, no model-answer-before-user
+- [x] Update `README.md` with Drill usage section
+- [ ] **Runtime verification (on user):** run a 5-rep drill on the capacity track, confirm difficulty adjusts, log captures all 5
 
 **Done when:** a 5-rep drill run on one track works end-to-end, difficulty visibly adjusts during the run, and the log captures all 5 reps with scores.
+
+Spec complete. Live verification on user.
 
 ---
 
