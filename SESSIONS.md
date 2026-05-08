@@ -75,15 +75,19 @@ Spec complete. Live verification on user.
 
 ## Session 5 — Teach mode + concept wiki
 
-- [ ] `modes/teach.md` — standalone concept Q&A; also invocable mid-Mock/Tutor as a detour
-- [ ] Wiki write/update logic: before answering "explain X," read `concepts/<slug>.md` if it exists; update rather than overwrite; preserve my follow-up annotations
-- [ ] Cross-linking: each concept note ends with "Related: " links to other concepts in the wiki
-- [ ] Concept note template: what it is, what it's for, when to reach for it, what it's NOT good at, alternatives + tradeoffs, related
-- [ ] Seed 5 concept notes by running Teach on: Kafka, consistent hashing, CAP theorem, CDC, leader election
-- [ ] Wire detour from Mock and Tutor (was stubbed in Sessions 2–3)
-- [ ] Update `README.md` with Teach usage example + link to `concepts/`
+- [x] `modes/teach.md` — standalone Q&A + mid-Mock/Tutor detour mode
+- [x] Wiki write/update logic: read existing `concepts/<slug>.md` first; preserve `> note:` user annotations and `## My notes` sections; append-rather-than-replace on follow-ups (with dated subsections)
+- [x] Cross-linking: every note ends in `## Related` linking to real files only (no fabricated links)
+- [x] Concept note template: TL;DR / What it is / What it's for / When to reach for it / What it's NOT good at / Alternatives + tradeoffs / Related
+- [x] Comparison-question handling: writes `<x>-vs-<y>.md` plus updates both `<x>.md` and `<y>.md`
+- [x] Seed 5 concept notes: kafka, consistent-hashing, cap-theorem, cdc, leader-election (all cross-linked)
+- [x] Detour wire-through: Mock and Tutor specs already mark `[detour: <topic>]` correctly; teach.md handles the detour path with one-concept-per-detour rule and "Resume?" exit
+- [x] Update `README.md` with Teach usage section + links to all 5 seeded concepts
+- [ ] **Runtime verification (on user):** ask `/sd-coach teach kafka` and verify the existing note is read + acknowledged; ask a follow-up like "compare to Pulsar" and verify the note gets a dated `### compare to Pulsar — <date>` subsection rather than overwrite
 
 **Done when:** asking the same concept twice updates the existing note instead of duplicating, `concepts/` has 5 seeded notes with cross-links, and a mid-Tutor detour into Teach works end-to-end.
+
+Spec complete + 5 seeded notes shipped. Live verification on user.
 
 ---
 

@@ -35,7 +35,7 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 4 of 8. Mock, Tutor, and Drill are live; Teach is still a stub. See [SESSIONS.md](SESSIONS.md) for the build plan.
+Session 5 of 8. All four modes are live; the personal concept wiki is seeded with 5 notes. See [SESSIONS.md](SESSIONS.md) for the build plan.
 
 | Session | What lands | Status |
 |---|---|---|
@@ -43,7 +43,7 @@ Session 4 of 8. Mock, Tutor, and Drill are live; Teach is still a stub. See [SES
 | 2 | Mock mode | done |
 | 3 | Tutor mode | done |
 | 4 | Drill mode | done |
-| 5 | Teach mode + concept wiki | — |
+| 5 | Teach mode + concept wiki | done |
 | 6 | Company calibration (Netflix, Google, Meta) | — |
 | 7 | Rubrics + L3–L4 calibration pass | — |
 | 8 | DEMO + README polish + sample sessions | — |
@@ -70,6 +70,14 @@ Use Tutor when you want to learn the topic, not perform under pressure. Use Mock
 `/sd-coach drill <track>` runs 5 rapid reps on one of three tracks: `capacity`, `component`, or `failure-modes`. Each rep is one prompt → your answer → a short model answer → score (hit/partial/miss). Difficulty starts at medium and steps up after two clean hits or down after two misses. Logs to `sessions/<date>-drill-<track>/log.md`.
 
 Use Drill when you want reps on one specific skill — capacity math, single-component design, or failure-cascade reasoning — without the overhead of a full design walk.
+
+## How Teach works
+
+`/sd-coach teach <topic>` answers a concept question and writes the answer to `concepts/<slug>.md`. Asking the same concept again **updates** the existing note (preserving any user annotations marked `> note:`) rather than duplicating. Comparison questions ("Kafka vs Kinesis") write a separate comparison page and cross-link both concepts.
+
+Teach is also auto-invoked as a detour from Mock or Tutor — say "pause — explain X" mid-Tutor, the design walk pauses, the concept gets written, and you're back where you left off.
+
+The wiki is seeded with: [kafka](concepts/kafka.md), [consistent-hashing](concepts/consistent-hashing.md), [cap-theorem](concepts/cap-theorem.md), [cdc](concepts/cdc.md), [leader-election](concepts/leader-election.md). Add to it as you study — it's the artifact that compounds.
 
 ## How it works
 
