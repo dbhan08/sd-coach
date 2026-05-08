@@ -1,6 +1,16 @@
 ---
 name: sd-coach
-description: Personal system design interview coach with four modes — mock (45-min in-character interview sim), tutor (Socratic walkthrough, interruptible), drill (rapid 5-rep practice on capacity / single-component / failure-modes), and teach (concept Q&A like "explain Kafka" or "compare Kinesis vs SQS"). Calibrated for FAANG L3–L4 SWE roles. Companies seeded: Netflix, Google, Meta. Maintains a personal concept wiki at concepts/. Use when the user wants to practice or learn system design, or pastes a JD / interview question / freeform system design prompt.
+description: >
+  Personal system design interview coach with four modes — mock
+  (45-min in-character interview sim), tutor (Socratic walkthrough,
+  interruptible both ways), drill (rapid 5-rep practice on capacity
+  estimation, single-component deep-dive, or failure-mode walks),
+  and teach (concept Q&A like "explain Kafka" or "compare Kinesis
+  vs SQS"). Calibrated for FAANG L3–L4 SWE roles. Companies seeded
+  — Netflix, Google, Meta. Maintains a personal concept wiki at
+  concepts/. Use when the user wants to practice or learn system
+  design, or pastes a JD, interview question, or freeform system
+  design prompt.
 argument-hint: "[mock|tutor|drill|teach] [company?] [topic?] — or paste a JD / question freely"
 ---
 
