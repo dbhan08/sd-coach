@@ -8,8 +8,8 @@ description: >
   drill (rapid 5-rep practice on capacity, single-component, or
   failure-mode tracks), and teach (concept Q&A like "explain Kafka"
   or "compare Kinesis vs SQS"). Calibrated for FAANG L3–L4 SWE
-  roles. Companies seeded — Netflix, Google, Meta; any other company
-  works via JD-derived calibration or FAANG-generic defaults.
+  roles. Companies seeded — Netflix, Google, Meta, Nuro; any other
+  company works via JD-derived calibration or FAANG-generic defaults.
   Maintains a personal concept wiki at concepts/. Use when the user
   wants to practice or learn system design, or pastes a JD,
   interview question, role description, or freeform system design
@@ -50,7 +50,7 @@ After picking the mode, read `modes/<mode>.md` and follow its spec exactly. If a
 
 ## Companies
 
-Seeded with full calibration: `netflix`, `google`, `meta`.
+Seeded with full calibration: `netflix`, `google`, `meta`, `nuro` (autonomous-delivery / robotics SWE infra — different shape from FAANG).
 
 For any other company name (Amazon, Apple, Stripe, Databricks, etc.):
 1. If `companies/<name>.md` exists, load it.

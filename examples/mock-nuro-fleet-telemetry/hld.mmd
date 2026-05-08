@@ -1,0 +1,28 @@
+graph LR
+  subgraph Vehicle
+    Sensors[Sensors<br/>LiDAR/cam/radar]
+    Ring[On-vehicle ring buffer<br/>last ~5 min raw]
+    Bus[Structured event bus<br/>~100 ev/sec]
+    Agent[Telemetry agent<br/>queue + uploader]
+    Trig[Trigger detector<br/>hard-brake / anomaly]
+  end
+
+  Gateway[Regional ingest gateway<br/>mTLS, schema validation]
+  Kafka[(Kafka<br/>structured events)]
+  S3[(Object storage<br/>clips)]
+  Idx[(Search index<br/>event + clip metadata)]
+  Warehouse[(Columnar warehouse<br/>offline analytics)]
+  Alerts[Real-time consumers<br/>fleet-ops alerting]
+
+  Sensors --> Ring
+  Sensors --> Bus
+  Bus --> Trig
+  Trig -- snapshot 30s clip<br/>+ context --> Agent
+  Bus -- structured stream --> Agent
+  Agent -- HTTPS / mTLS<br/>queued, lossy on vehicle --> Gateway
+  Gateway --> Kafka
+  Gateway -- signed URL upload --> S3
+  Kafka --> Alerts
+  Kafka --> Warehouse
+  Kafka --> Idx
+  S3 -. object key .-> Idx

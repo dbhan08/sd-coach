@@ -2,7 +2,7 @@
 
 Personal system design interview coach. Runs as a Claude Code skill.
 
-Five practice modes for end-to-end system design prep, calibrated for FAANG L3–L4 SWE roles. Works with any company (Netflix, Google, Meta seeded; others auto-calibrate from JD or fall back to FAANG-generic).
+Five practice modes for end-to-end system design prep, calibrated for FAANG L3–L4 SWE roles. Works with any company (Netflix, Google, Meta, Nuro seeded; others auto-calibrate from JD or fall back to FAANG-generic).
 
 ## Modes
 
@@ -129,7 +129,7 @@ Each company file (`companies/<name>.md`) sets:
 - Cultural emphasis the mode reflects in its feedback
 - Anti-patterns the mode flags explicitly when it sees them
 
-Seeded: [netflix](companies/netflix.md), [google](companies/google.md), [meta](companies/meta.md). For any other company name (Amazon, Apple, Stripe, Databricks, etc.) the skill auto-calibrates from cues in the paste / JD, or falls back to FAANG-generic L3–L4 defaults. After a session with auto-calibration, the skill offers to save it as `companies/<name>.md` so it persists.
+Seeded: [netflix](companies/netflix.md), [google](companies/google.md), [meta](companies/meta.md), [nuro](companies/nuro.md) (autonomous-delivery / robotics SWE infra — different shape from FAANG; see also [examples/mock-nuro-fleet-telemetry](examples/mock-nuro-fleet-telemetry/)). For any other company name (Amazon, Apple, Stripe, Databricks, etc.) the skill auto-calibrates from cues in the paste / JD, or falls back to FAANG-generic L3–L4 defaults. After a session with auto-calibration, the skill offers to save it as `companies/<name>.md` so it persists.
 
 To pre-add a company manually, copy [companies/_template.md](companies/_template.md).
 
