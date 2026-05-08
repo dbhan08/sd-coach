@@ -93,15 +93,17 @@ Spec complete + 5 seeded notes shipped. Live verification on user.
 
 ## Session 6 — Company calibration: Netflix, Google, Meta
 
-- [ ] `companies/_template.md` — schema for a company file (rubric weights, question pool, what they push on, cultural notes, anti-patterns at this company)
-- [ ] `companies/netflix.md` — emphasis: streaming/availability, microservices boundaries, ops culture
-- [ ] `companies/google.md` — emphasis: scale fundamentals, capacity rigor, formal correctness
-- [ ] `companies/meta.md` — emphasis: product sense, social-graph patterns, infra-at-scale
-- [ ] Mode integration: each mode accepts a company arg and visibly changes behavior (rubric weights, question selection, cultural emphasis in feedback)
-- [ ] Acceptance test: run the same Mock prompt with `--company netflix` vs `--company google`, diff the scorecards — must be visibly different in emphasis
-- [ ] Update `README.md` with company usage
+- [x] `companies/_template.md` — schema for adding a new company (question pool, rubric weights, cultural emphasis, anti-patterns, L3-vs-L4 expectation)
+- [x] `companies/netflix.md` — availability-first, chaos-engineering culture, fallback discipline, multi-region by default; weight-up: scaling, tradeoff-articulation, error-handling, growth
+- [x] `companies/google.md` — capacity rigor, fundamentals from first principles, SRE/SLO/tail-latency framing; weight-up: assumptions, math, component-breakdown, tradeoffs
+- [x] `companies/meta.md` — product sense first, graph-shape data, fan-out tradeoffs, permission-on-read; weight-up: scoping, data-flow, data-model
+- [x] Mode integration is wired through SKILL.md routing (`If a company is named, load companies/<name>.md and apply its rubric weights, question pool, and cultural emphasis`). Each mode references this in its setup section.
+- [x] Update `README.md` with a "Company calibration" section + invocation examples
+- [ ] **Runtime verification (on user):** run the same Mock prompt with three different companies; diff the scorecards — should be visibly different in emphasis and which dimensions get weight
 
 **Done when:** the same prompt under three different companies produces three visibly different scorecards, and the differences trace back to the company file.
+
+Spec complete. Live verification on user.
 
 ---
 

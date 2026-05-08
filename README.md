@@ -35,7 +35,7 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 5 of 8. All four modes are live; the personal concept wiki is seeded with 5 notes. See [SESSIONS.md](SESSIONS.md) for the build plan.
+Session 6 of 8. All four modes are live; concept wiki is seeded with 5 notes; company calibration files are in for Netflix, Google, Meta. See [SESSIONS.md](SESSIONS.md) for the build plan.
 
 | Session | What lands | Status |
 |---|---|---|
@@ -44,7 +44,7 @@ Session 5 of 8. All four modes are live; the personal concept wiki is seeded wit
 | 3 | Tutor mode | done |
 | 4 | Drill mode | done |
 | 5 | Teach mode + concept wiki | done |
-| 6 | Company calibration (Netflix, Google, Meta) | — |
+| 6 | Company calibration (Netflix, Google, Meta) | done |
 | 7 | Rubrics + L3–L4 calibration pass | — |
 | 8 | DEMO + README polish + sample sessions | — |
 
@@ -78,6 +78,24 @@ Use Drill when you want reps on one specific skill — capacity math, single-com
 Teach is also auto-invoked as a detour from Mock or Tutor — say "pause — explain X" mid-Tutor, the design walk pauses, the concept gets written, and you're back where you left off.
 
 The wiki is seeded with: [kafka](concepts/kafka.md), [consistent-hashing](concepts/consistent-hashing.md), [cap-theorem](concepts/cap-theorem.md), [cdc](concepts/cdc.md), [leader-election](concepts/leader-election.md). Add to it as you study — it's the artifact that compounds.
+
+## Company calibration
+
+Pass a company name as the second argument to any mode (or include it in a freeform paste) to apply that company's calibration:
+
+```
+/sd-coach mock netflix
+/sd-coach tutor google design-url-shortener
+/sd-coach drill capacity google
+```
+
+Each company file (`companies/<name>.md`) sets:
+- A question pool the mode can pick from
+- Rubric weights (which scorecard dimensions are emphasized)
+- Cultural emphasis the mode reflects in its feedback
+- Anti-patterns the mode flags explicitly when it sees them
+
+Seeded: [netflix](companies/netflix.md), [google](companies/google.md), [meta](companies/meta.md). To add another, copy [companies/_template.md](companies/_template.md) and fill it in.
 
 ## How it works
 
