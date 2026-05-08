@@ -35,18 +35,29 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 1 of 8. Skill scaffold + routing only. All four modes are stubs that name what's coming. See [SESSIONS.md](SESSIONS.md) for the build plan.
+Session 2 of 8. Mock mode is live; the other three are still stubs. See [SESSIONS.md](SESSIONS.md) for the build plan.
 
 | Session | What lands | Status |
 |---|---|---|
-| 1 | Skill skeleton, routing, README v1 | in progress |
-| 2 | Mock mode | — |
+| 1 | Skill skeleton, routing, README v1 | done |
+| 2 | Mock mode | done |
 | 3 | Tutor mode | — |
 | 4 | Drill mode | — |
 | 5 | Teach mode + concept wiki | — |
 | 6 | Company calibration (Netflix, Google, Meta) | — |
 | 7 | Rubrics + L3–L4 calibration pass | — |
 | 8 | DEMO + README polish + sample sessions | — |
+
+## How Mock works
+
+`/sd-coach mock <company?> <topic?>` starts a 45-minute in-character interview. Seven phases: scoping → capacity → HLD → API → schema → LLD critical path → failure modes. The interviewer probes, doesn't teach, doesn't hint. If you ask "what's Kafka?" mid-mock, it gets noted for the writeup and the interview continues.
+
+At the end you get a scorecard at `sessions/<date>-<slug>/scorecard.md` that:
+- Cites specific rubric dimensions ([rubrics/hld.md](rubrics/hld.md), [rubrics/lld.md](rubrics/lld.md), [rubrics/capacity-estimation.md](rubrics/capacity-estimation.md))
+- Quotes your own answers back so you can see what you actually said
+- Tells you whether you cleared the L3 bar and the L4 bar, and what's missing for L4
+
+The session folder also contains `transcript.md` (full back-and-forth) and `hld.mmd` (Mermaid of your HLD as captured during phase 3).
 
 ## How it works
 

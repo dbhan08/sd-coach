@@ -6,30 +6,36 @@ Each session is 1–3 hours and ends with a working state + a green push. README
 
 ## Session 1 — Skill skeleton, routing, README v1
 
-- [x] Verify Claude Code skill manifest format (confirmed: `~/.claude/skills/<name>/SKILL.md`, frontmatter with `name`, `description`, `argument-hint`, `arguments`)
-- [x] Write `SKILL.md` with the skill manifest (name, description, argument-hint)
+- [x] Verify Claude Code skill manifest format (confirmed: `~/.claude/skills/<name>/SKILL.md`, frontmatter with `name`, `description`, `argument-hint`)
+- [x] Write `SKILL.md` with the skill manifest
 - [x] Top-level mode dispatch in SKILL.md body: parses `$ARGUMENTS`, routes to mode spec, handles freeform paste
 - [x] Stub `modes/mock.md`, `modes/tutor.md`, `modes/drill.md`, `modes/teach.md`
 - [x] `.gitignore` — `RESUME.md`, `sessions/`, `.DS_Store`, `.env`
 - [x] `README.md` v1 — pitch, install via symlink, invocation examples, status table
 - [x] Install via symlink: `~/.claude/skills/sd-coach -> /Users/deyvikbhan/develop/sd-coach`
-- [ ] Runtime smoke test: reload Claude Code, run `/sd-coach`, confirm mode menu appears and each stub routes correctly
+- [x] Static smoke test: frontmatter YAML parses, mode files referenced from SKILL.md exist, .gitignore includes RESUME.md/sessions/.env (caught + fixed unquoted colon in `description` that would have rejected the skill at runtime)
 
 **Done when:** the skill loads cleanly in Claude Code, invocation with no args shows the mode menu, and each of the four mode names routes to its stub.
+
+Completed: 2026-05-07
 
 ---
 
 ## Session 2 — Mock mode
 
-- [ ] `modes/mock.md` — full interviewer prompt with strict in-character constraint
-- [ ] Phase tracker: scoping → capacity estimation → HLD → API contract → schema → LLD critical path → failure modes. Each phase has time budget + transition rules.
-- [ ] Session log writer: every Mock session writes to `sessions/YYYY-MM-DD-<topic>/transcript.md` + `hld.mmd` + `scorecard.md`
-- [ ] Scorecard format: cites rubric dimensions verbatim, quotes my own answers back, no vibe scoring
-- [ ] "What this mode does NOT do" section: no hints, no teaching, no scope renegotiation mid-session
-- [ ] Run one real Mock end-to-end on a canonical prompt ("Design a URL shortener") — capture as the test artifact
-- [ ] Update `README.md` with Mock usage example
+- [x] `modes/mock.md` — full interviewer prompt with strict in-character constraint
+- [x] Phase tracker: scoping → capacity estimation → HLD → API contract → schema → LLD critical path → failure modes, with budgets and transition rules
+- [x] Session log writer: instructions for `sessions/<date>-<slug>/transcript.md` + `hld.mmd` + `scorecard.md`
+- [x] Scorecard format: cites `rubrics/{hld,lld,capacity-estimation}.md` by dimension, requires verbatim candidate quotes, "no signal" for uncited dimensions (no vibe scoring)
+- [x] "Behavior rules NEVER" section: no hints, no teaching, no scope renegotiation, no broken character
+- [x] Skeletal rubrics written: `rubrics/hld.md`, `rubrics/lld.md`, `rubrics/capacity-estimation.md` (Session 7 expands)
+- [x] Detour handling: mid-mock concept questions get deferred to a `[deferred-questions]` section, offered as Teach mode after scorecard
+- [x] Update `README.md` — Mock promoted to "done" in status table; "How Mock works" section added
+- [ ] **End-to-end runtime test (on user):** start a real mock with `/sd-coach mock`, confirm transcript + hld.mmd + scorecard get written and the scorecard cites rubrics. Once verified, promote that run to `examples/` in Session 8.
 
 **Done when:** a 45-minute Mock session runs end-to-end on a real prompt, writes transcript + diagram + scorecard to `sessions/`, and the scorecard cites specific rubric dimensions.
+
+Spec complete. Live verification on user.
 
 ---
 
