@@ -156,3 +156,33 @@ Post-Session-8 fix. Two design gaps surfaced when the user reviewed the build:
 - [ ] **Runtime verification (on user):** start `/sd-coach` and confirm 5 modes appear; paste a JD-shaped paragraph and confirm it routes to coach; run a coach session and confirm the 8-step cycle (suggest → ask-cues → model → attempt → reconcile → teach → append → transition) actually fires per phase.
 
 Completed: 2026-05-08
+
+---
+
+## Polish 2 — Quiz + question database expansion
+
+User flagged two more gaps after Coach landed:
+1. Teach was answer-only — no active recall / quiz mechanism. A "complete" teach mode should test the user, not just hand them a note.
+2. Question database was thin — 3 inline examples per drill track, 6–7 questions per company, 5 concept notes. Not enough variety for repeated practice.
+
+- [x] **Teach quiz** — `modes/teach.md` adds an "Optional quiz after explaining" section. After Teach writes/updates a note (in standalone mode, not detours), offers 3–5 questions mixing recall / application / tradeoff / failure-mode. Per-question score + 1–2 sentence model answer. End-of-quiz tally + suggested follow-up (re-read section, drill concepts, move on). Logs to `sessions/<date>-teach-quiz-<slug>/log.md`.
+- [x] **Drill `concepts` track** — `modes/drill.md` adds a 4th track that quizzes from the `concepts/` wiki. `drill concepts <name>` targets one note; `drill concepts` (no name) randomizes across all. Score against the concept note's substance.
+- [x] **Drill prompt banks** — three new files at `questions/`:
+  - `questions/drill-capacity.md` — 15 prompts (5 easy / 5 medium / 5 hard) with model-answer outlines + sanity-check references
+  - `questions/drill-component.md` — 15 prompts covering session stores, rate limiters, idempotent payments, distributed locks, feature flags, etc.
+  - `questions/drill-failure-modes.md` — 15 cascades from "Postgres goes down" through "sharded DB double failure" with timing-aware recovery walks
+- [x] **Concept wiki expansion** — added 10 high-frequency L3-L4 concept notes:
+  - `rate-limiting.md` — five algorithms compared
+  - `sharding.md` — strategies + the shard-key tradeoff
+  - `replication.md` — topology + sync mode matrix
+  - `caching-strategies.md` — read/write strategies + eviction
+  - `load-balancer.md` — L4 vs L7, algorithms
+  - `distributed-locks.md` — etcd / Redlock / fencing tokens
+  - `realtime-transports.md` — WebSockets / SSE / long polling
+  - `sql-vs-nosql.md` — five categories, decision heuristic
+  - `idempotency-keys.md` — pattern + why it's required
+  - `circuit-breaker.md` — state machine + when it complements retries
+- [x] `README.md` updated: How Teach works mentions the quiz, How Drill works adds the concepts track and links the prompt banks, concept-wiki section grouped by topic and lists all 15
+- [ ] **Runtime verification (on user):** ask `/sd-coach teach kafka` → after the answer, confirm the quiz offer fires; accept and confirm 3-5 questions are asked, scored, with a model answer per question and a tally at the end. Then `/sd-coach drill concepts kafka` → confirm 5 quiz reps drawn from `concepts/kafka.md`.
+
+Completed: 2026-05-08

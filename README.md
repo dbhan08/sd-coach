@@ -88,17 +88,30 @@ Use Tutor when you want to learn the topic, not perform under pressure. Use Mock
 
 ## How Drill works
 
-`/sd-coach drill <track>` runs 5 rapid reps on one of three tracks: `capacity`, `component`, or `failure-modes`. Each rep is one prompt → your answer → a short model answer → score (hit/partial/miss). Difficulty starts at medium and steps up after two clean hits or down after two misses. Logs to `sessions/<date>-drill-<track>/log.md`.
+`/sd-coach drill <track>` runs 5 rapid reps on one of four tracks: `capacity`, `component`, `failure-modes`, or `concepts`. Each rep is one prompt → your answer → a short model answer → score (hit/partial/miss). Difficulty starts at medium and steps up after two clean hits or down after two misses. Logs to `sessions/<date>-drill-<track>/log.md`.
 
-Use Drill when you want reps on one specific skill — capacity math, single-component design, or failure-cascade reasoning — without the overhead of a full design walk.
+- `drill capacity` — 15-prompt bank at [questions/drill-capacity.md](questions/drill-capacity.md). Estimation reps from B2B SaaS sizing through global egress bills.
+- `drill component` — 15-prompt bank at [questions/drill-component.md](questions/drill-component.md). One-component-at-a-time reps from session stores through distributed counters.
+- `drill failure-modes` — 15-prompt bank at [questions/drill-failure-modes.md](questions/drill-failure-modes.md). System sketch + failure event → walk the cascade.
+- `drill concepts <name?>` — quiz reps drawn from your `concepts/` wiki. `drill concepts kafka` targets one concept; `drill concepts` randomizes across all your notes. Active recall, not just rereading.
+
+Use Drill when you want reps on one specific skill without the overhead of a full design walk.
 
 ## How Teach works
 
 `/sd-coach teach <topic>` answers a concept question and writes the answer to `concepts/<slug>.md`. Asking the same concept again **updates** the existing note (preserving any user annotations marked `> note:`) rather than duplicating. Comparison questions ("Kafka vs Kinesis") write a separate comparison page and cross-link both concepts.
 
-Teach is also auto-invoked as a detour from Mock or Tutor — say "pause — explain X" mid-Tutor, the design walk pauses, the concept gets written, and you're back where you left off.
+After Teach explains a concept, it offers a quick **3–5 question quiz** to check understanding. Quiz mixes recall, application, tradeoff, and failure-mode questions. Tally + suggested follow-ups at the end. Logs to `sessions/<date>-teach-quiz-<slug>/log.md`. Decline if you don't want it.
 
-The wiki is seeded with: [kafka](concepts/kafka.md), [consistent-hashing](concepts/consistent-hashing.md), [cap-theorem](concepts/cap-theorem.md), [cdc](concepts/cdc.md), [leader-election](concepts/leader-election.md). Add to it as you study — it's the artifact that compounds.
+Teach is also auto-invoked as a detour from Mock or Tutor or Coach — say "pause — explain X" mid-flow, the walk pauses, the concept gets written, and you're back where you left off. (Detours don't trigger the quiz — that's a standalone-Teach feature.)
+
+The wiki is seeded with 15 concept notes:
+- **Foundations:** [cap-theorem](concepts/cap-theorem.md), [sql-vs-nosql](concepts/sql-vs-nosql.md), [sharding](concepts/sharding.md), [replication](concepts/replication.md), [consistent-hashing](concepts/consistent-hashing.md)
+- **Messaging & data flow:** [kafka](concepts/kafka.md), [cdc](concepts/cdc.md), [leader-election](concepts/leader-election.md)
+- **Reliability patterns:** [rate-limiting](concepts/rate-limiting.md), [circuit-breaker](concepts/circuit-breaker.md), [idempotency-keys](concepts/idempotency-keys.md), [distributed-locks](concepts/distributed-locks.md)
+- **Caching & traffic:** [caching-strategies](concepts/caching-strategies.md), [load-balancer](concepts/load-balancer.md), [realtime-transports](concepts/realtime-transports.md)
+
+Add to it as you study — it's the artifact that compounds.
 
 ## Company calibration
 

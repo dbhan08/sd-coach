@@ -10,12 +10,25 @@ This file is the entire instruction set when `drill` is the active mode.
    - `capacity` — back-of-envelope estimation reps
    - `component` — design one small component end-to-end
    - `failure-modes` — given a system, walk the cascade
-2. If no track is given: ask once, "Which track — capacity, component, or failure-modes?" and proceed.
+   - `concepts` — quiz questions drawn from your `concepts/` wiki (recall, application, tradeoff, failure-mode)
+2. If no track is given: ask once, "Which track — capacity, component, failure-modes, or concepts?" and proceed.
 3. If a company is named, lightly bias prompts toward that company's stack/scale (Netflix → streaming/availability prompts, Google → scale fundamentals, Meta → social-graph patterns). Don't apply company rubrics — Drill has its own scoring.
-4. Create the session folder: `sessions/<YYYY-MM-DD>-drill-<track>/`. File:
+4. **Load the prompt bank** for the track: `questions/drill-<track>.md` (see "Prompt sources" below).
+5. Create the session folder: `sessions/<YYYY-MM-DD>-drill-<track>/`. File:
    - `log.md` — all 5 reps with prompts, answers, model answers, scores
-5. Open with: "Drill: <track>. 5 reps. Difficulty starts at medium and adjusts as we go. Reply 'skip' on any prompt to drop it. Ready?"
-6. Wait for "ready" / "go" / "yes" before starting.
+6. Open with: "Drill: <track>. 5 reps. Difficulty starts at medium and adjusts as we go. Reply 'skip' on any prompt to drop it. Ready?"
+7. Wait for "ready" / "go" / "yes" before starting.
+
+## Prompt sources
+
+Each track has a prompt bank at `questions/drill-<track>.md` with 15–20 prompts grouped by difficulty (easy / medium / hard).
+
+- `questions/drill-capacity.md` — capacity estimation prompts
+- `questions/drill-component.md` — single-component design prompts
+- `questions/drill-failure-modes.md` — failure cascade prompts
+- For the `concepts` track: prompts are generated dynamically from the user's `concepts/` wiki. If the user named a specific concept (`drill concepts kafka`), all questions target that concept. If no concept is named (`drill concepts`), pick randomly across all notes in `concepts/`.
+
+When picking prompts: don't repeat within the same drill session. If the user has run this track multiple times recently (check `sessions/`), prefer prompts they haven't seen.
 
 ## Difficulty
 
@@ -48,6 +61,8 @@ Examples by difficulty:
 - medium: "Estimate storage for 5 years of every Twitter user's tweets at current scale."
 - hard: "Estimate egress bandwidth bill (USD/month at $0.05/GB) for a globally-cached photo service serving 100M DAU each viewing 30 photos/day average."
 
+Full prompt bank: [questions/drill-capacity.md](../questions/drill-capacity.md).
+
 Model answer cites: stated assumptions, math walk, sanity check, one tradeoff (e.g., "if compression cuts payload 3×, storage is 1/3").
 
 Score per rep:
@@ -65,6 +80,8 @@ Examples by difficulty:
 - easy: "Design a session store for a web app, single-region, ≤100K active sessions."
 - medium: "Design a global rate limiter for a public API — per-user, 100 req/min."
 - hard: "Design a distributed counter for likes on a viral post — must support 50K writes/sec, eventually-consistent reads OK, hot-partition aware."
+
+Full prompt bank: [questions/drill-component.md](../questions/drill-component.md).
 
 Model answer cites: chosen primitive (Redis / token bucket / sharded counter / etc), why over alternatives, the tradeoff being made (consistency vs latency, cost vs accuracy, etc).
 
@@ -84,12 +101,42 @@ Examples by difficulty:
 - medium: "Service A calls Service B sync over HTTP. B's p99 latency jumps from 100ms to 5s. A has no timeout configured. Walk the next 60 seconds across A's traffic."
 - hard: "Read-heavy service, Redis cache + Postgres. Cache flushes (eviction storm at 09:00:00). Walk the cascade through 09:01:00 — what fails, what slows, what recovers, what doesn't."
 
+Full prompt bank: [questions/drill-failure-modes.md](../questions/drill-failure-modes.md).
+
 Model answer cites: cascade order, first user-visible failure with timing, mitigation that would have helped.
 
 Score per rep:
 - **hit** — correct cascade order, names the first user-visible symptom, names a mitigation
 - **partial** — partial cascade or generic "circuit breaker would help" with no specifics
 - **miss** — missed the first-order failure, OR proposed a fix that doesn't address the actual cascade
+
+### concepts track
+
+Each rep: a quiz question targeting one of the user's notes in `concepts/`. The track is for active recall — testing whether you've actually internalized something you "learned" earlier, vs. just having a note about it.
+
+Prompt format: a single question, drawn from one of four shapes:
+- **Recall:** "What does <X> use to <Y>?"
+- **Application:** "Given <scenario>, would you pick <X> or <Y>? Why?"
+- **Tradeoff:** "When would you specifically NOT use <X>?"
+- **Failure mode:** "If <component running X> fails, what happens?"
+
+Source pool:
+- `drill concepts <name>` — all 5 questions target `concepts/<name>.md` (e.g., `drill concepts kafka`). Useful when learning one topic in depth.
+- `drill concepts` — questions drawn from across all notes in `concepts/`. Useful for spaced review.
+
+Examples by difficulty (using kafka as the source):
+- easy: "What does Kafka use to track each consumer's read position?"
+- medium: "You have a stream of order events that needs replay across 3 different downstream systems. Kafka or RabbitMQ? Why?"
+- hard: "A Kafka broker crashes mid-write while a consumer is committing offsets. Walk the recovery — what gets duplicated, what gets lost, what gets retried?"
+
+Model answer: cites the concept's note (`concepts/<slug>.md`) and quotes the specific section that supports the answer.
+
+Score per rep:
+- **hit** — answer aligns with the concept note's substance
+- **partial** — right direction but missing specifics from the note
+- **miss** — doesn't match the note, OR "I don't know"
+
+After the drill, the trend identifies which sections of which concept notes are weakest — "you missed the failure-mode question on Kafka. Re-read `concepts/kafka.md` § What it's NOT good at."
 
 ## Per-rep flow
 

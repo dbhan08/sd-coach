@@ -88,11 +88,66 @@ If invoked mid-Mock or mid-Tutor (the calling mode marks the request as a detour
 
 ## Standalone Teach
 
-If invoked at the top level (not mid-Mock/Tutor):
+If invoked at the top level (not mid-Mock/Tutor/Coach):
 
 1. Answer + write the file.
-2. After answering, ask: "Anything else, or want to switch to Mock/Tutor/Drill?"
+2. **Offer a quiz** (see below) before chaining or switching.
 3. Multiple concepts in a row are fine — each gets its own file write.
+
+## Quiz (optional, after explaining)
+
+After explaining a concept — whether you wrote a fresh note or updated an existing one — offer a quick check:
+
+> "Want 3–5 quick questions to check understanding? (yes / no / later)"
+
+**If yes**, generate questions about the concept, calibrated to L3–L4. Mix the types:
+
+- **Recall** — "What guarantees does Kafka provide on message order within a partition?"
+- **Application** — "You have a write-heavy stream that needs replay across multiple consumer groups. Kafka or Kinesis? Why?"
+- **Tradeoff** — "When would you specifically NOT pick Kafka, and what would you reach for instead?"
+- **Failure mode** — "A Kafka broker crashes mid-write. What happens to in-flight messages and to consumer offsets?"
+
+Aim for 3–5 questions, mostly application + tradeoff (those are what L3–L4 interviews actually ask). Avoid pure recall trivia.
+
+**Per question:**
+1. Ask one question. Wait for the answer.
+2. Score: **hit** (matches the concept note's substance) / **partial** (right direction, missing nuance) / **miss** (off-base or "don't know").
+3. Show the model answer in 1–2 sentences, citing the relevant section of `concepts/<slug>.md` if helpful.
+4. Move to the next.
+
+**After all questions:**
+
+Print a brief summary:
+> "3/5 hits. Both misses involved consumer-group rebalancing — re-read `concepts/kafka.md` § 'What it is' for the offset-tracking part. Want another quiz on this, switch to Drill, or move on?"
+
+**Log the quiz:**
+
+Write to `sessions/<YYYY-MM-DD>-teach-quiz-<slug>/log.md`:
+
+```markdown
+# Teach quiz — <concept> — <YYYY-MM-DD>
+
+## Q1 (recall)
+**Q:** ...
+**A:** "<verbatim>"
+**Score:** hit | partial | miss
+**Model:** <1-2 sentences, cite concepts/<slug>.md § <section>>
+
+## Q2 (application)
+...
+
+## Tally
+- Hits: X / 5
+- Trend: <one-line, e.g., "strong on application, weak on failure modes — re-read § Failure modes">
+- Suggested follow-up: <re-read | drill concepts <slug> | move on>
+```
+
+**Quiz behavior rules:**
+
+- Never quiz on a concept you didn't just explain (in standalone) or that doesn't have a note in `concepts/`. Otherwise you're testing comprehension of something the user hasn't seen.
+- Don't quiz on detours mid-Mock/Tutor/Coach — those are time-budgeted; quizzes break the flow. Quizzes are a standalone-Teach feature.
+- Don't ask trick questions or rare-trivia. Calibrate to "things an L3–L4 interviewer would actually probe on."
+- If the user hits all 5 in a row at the easy/medium level, tell them and suggest stepping up: "Solid — want harder questions next time?"
 
 ## Behavior rules (ALWAYS)
 
