@@ -2,14 +2,17 @@
 
 Personal system design interview coach. Runs as a Claude Code skill.
 
-Four practice modes for end-to-end system design prep, calibrated for FAANG L3–L4 SWE roles. Companies seeded: Netflix, Google, Meta.
+Five practice modes for end-to-end system design prep, calibrated for FAANG L3–L4 SWE roles. Works with any company (Netflix, Google, Meta seeded; others auto-calibrate from JD or fall back to FAANG-generic).
 
 ## Modes
 
-- **mock** — full 45-min in-character interview sim with rubric-cited scorecard
-- **tutor** — Socratic walkthrough, interrupts both ways, detours into Teach mid-flow
-- **drill** — rapid 5-rep drills on capacity / single-component / failure-mode tracks
-- **teach** — concept Q&A; builds a personal wiki at `concepts/`
+- **coach** — teacher walks you through a scenario, with model answers at each phase and proactive concept teaching. **Default for learners.**
+- **mock** — full 45-min in-character interview sim with rubric-cited scorecard. **No teaching** — pressure-test only.
+- **tutor** — Socratic walkthrough, you drive, tutor interrupts on structural mistakes and offers detours on knowledge gaps.
+- **drill** — rapid 5-rep drills on capacity / single-component / failure-mode tracks.
+- **teach** — concept Q&A; builds a personal wiki at `concepts/`.
+
+**Quick decision guide:** Use **coach** if you don't know the topic well yet — it teaches you. Use **mock** when you do know it and want to pressure-test. Use **tutor** for a Socratic middle ground. Use **drill** for fast reps. Use **teach** for one-off concept questions.
 
 ## Install
 
@@ -25,13 +28,14 @@ Then `/sd-coach` is available anywhere you run `claude`.
 
 ```
 /sd-coach                          # show mode menu
-/sd-coach mock netflix             # full mock, Netflix calibration
-/sd-coach tutor google design twitter
-/sd-coach drill capacity
-/sd-coach teach kafka
+/sd-coach coach netflix            # teacher walks you through a Netflix scenario
+/sd-coach mock google              # full mock interview, Google calibration
+/sd-coach tutor meta design feed   # Socratic walk through feed design
+/sd-coach drill capacity           # 5-rep capacity estimation drill
+/sd-coach teach kafka              # explain Kafka, write to concepts/
 ```
 
-You can also paste a JD or freeform question and the skill will infer the mode.
+You can also **paste a JD, role description, or freeform question** and the skill will infer the mode (defaults to coach for learners). Companies that aren't seeded (Amazon, Apple, Stripe, etc.) auto-calibrate from cues in the paste; offer to save the calibration after the session.
 
 ## Status
 
@@ -47,6 +51,23 @@ All 8 build sessions complete. Ready to use. See [DEMO.md](DEMO.md) for reproduc
 | 6 | Company calibration (Netflix, Google, Meta) | done |
 | 7 | Rubrics + L3–L4 calibration pass | done |
 | 8 | DEMO + README polish + examples | done |
+
+## How Coach works
+
+`/sd-coach coach <company?> <topic?>` — or paste a JD/role description — opens a teacher-led walkthrough of a scenario. The teacher:
+- **Picks a scenario** appropriate for the role and company (or uses the topic you named)
+- For each of the 7 phases (scoping → capacity → HLD → API → schema → LLD → failure modes):
+  1. **Suggests** what you should be doing in this phase
+  2. **Points out what to ask** the interviewer
+  3. **Shows the model answer** at L3, with a "to clear L4" supplement
+  4. **Lets you attempt** your own answer
+  5. **Reconciles** — quotes you back, names what's strong/missing, cites rubric dimensions
+  6. **Proactively teaches** any concept you used shallowly (small things inline; bigger ones detour into Teach and write `concepts/<topic>.md`)
+- **Builds a `model-answer.md`** as you go, so you leave with a complete reference for that scenario
+
+Coach is the right mode when you don't know the topic well yet. It hand-holds; that's the point. Once you've done a few Coach walks on a topic, switch to **mock** for the same scenario to pressure-test without help.
+
+For unknown companies (anything not in `companies/`), Coach reads the role/JD/paste for cues and synthesizes a one-time calibration. After the session it offers to save that as `companies/<name>.md` for next time.
 
 ## How Mock works
 
@@ -95,7 +116,9 @@ Each company file (`companies/<name>.md`) sets:
 - Cultural emphasis the mode reflects in its feedback
 - Anti-patterns the mode flags explicitly when it sees them
 
-Seeded: [netflix](companies/netflix.md), [google](companies/google.md), [meta](companies/meta.md). To add another, copy [companies/_template.md](companies/_template.md) and fill it in.
+Seeded: [netflix](companies/netflix.md), [google](companies/google.md), [meta](companies/meta.md). For any other company name (Amazon, Apple, Stripe, Databricks, etc.) the skill auto-calibrates from cues in the paste / JD, or falls back to FAANG-generic L3–L4 defaults. After a session with auto-calibration, the skill offers to save it as `companies/<name>.md` so it persists.
+
+To pre-add a company manually, copy [companies/_template.md](companies/_template.md).
 
 ## Calibration philosophy
 

@@ -139,3 +139,20 @@ Spec complete. Live verification on user.
 Spec complete. The "stranger can run a Mock in 2 minutes" test is the user's first real-run check; if anything in DEMO.md doesn't match real output, those are the bugs to fix in a follow-up session.
 
 Completed: 2026-05-07
+
+---
+
+## Polish 1 — Coach mode + JD-paste generality
+
+Post-Session-8 fix. Two design gaps surfaced when the user reviewed the build:
+
+1. **No proactive-teaching mode.** Mock is strict no-teaching; Tutor is Socratic but expects the user to drive. Neither helps a learner who doesn't yet know what questions to ask. Coach mode fills this.
+2. **Unknown-company UX too friction-heavy.** Original SKILL.md required 3 setup questions for any unseeded company. Replaced with: scan the JD/paste for cues and synthesize a one-time calibration, or fall back to FAANG-generic L3–L4 defaults. Save-after-session for persistence.
+
+- [x] `modes/coach.md` — teacher walks you through a scenario; 7 phases (same as Mock); 8-step cycle per phase: suggest → point out what to ask → show model → user attempts → reconcile (with rubric citations) → proactively teach concepts → append to model-answer.md → transition. Writes `coach-transcript.md`, `hld.mmd`, `model-answer.md`.
+- [x] `modes/tutor.md` — added a second interrupt class: knowledge-gap detours (`[tutor-knowledge-check]`) that proactively offer Teach detours when user invokes a concept shallowly. Capped at ~3 per session so it doesn't get noisy.
+- [x] `SKILL.md` — added `coach` to mode menu; routing now defaults JD/role-description pastes to coach (was mock — wrong default for a learner). Companies section rewritten: seeded + JD-derived auto-calibration + FAANG-generic fallback. Frontmatter description updated and re-validated as YAML.
+- [x] `README.md` — Modes section restructured to 5 entries with quick decision guide; added "How Coach works" section above "How Mock works"; updated Use examples; companies section now reflects auto-calibration.
+- [ ] **Runtime verification (on user):** start `/sd-coach` and confirm 5 modes appear; paste a JD-shaped paragraph and confirm it routes to coach; run a coach session and confirm the 8-step cycle (suggest → ask-cues → model → attempt → reconcile → teach → append → transition) actually fires per phase.
+
+Completed: 2026-05-08
