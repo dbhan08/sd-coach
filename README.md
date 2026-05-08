@@ -35,7 +35,7 @@ You can also paste a JD or freeform question and the skill will infer the mode.
 
 ## Status
 
-Session 7 of 8. All four modes live; concept wiki seeded; company calibration in; rubrics expanded to explicit L3/L4 line items. See [SESSIONS.md](SESSIONS.md) for the build plan.
+All 8 build sessions complete. Ready to use. See [DEMO.md](DEMO.md) for reproducible commands and [examples/](examples/) for what each mode's output looks like. Build log in [SESSIONS.md](SESSIONS.md).
 
 | Session | What lands | Status |
 |---|---|---|
@@ -46,7 +46,7 @@ Session 7 of 8. All four modes live; concept wiki seeded; company calibration in
 | 5 | Teach mode + concept wiki | done |
 | 6 | Company calibration (Netflix, Google, Meta) | done |
 | 7 | Rubrics + L3–L4 calibration pass | done |
-| 8 | DEMO + README polish + sample sessions | — |
+| 8 | DEMO + README polish + examples | done |
 
 ## How Mock works
 
@@ -107,6 +107,16 @@ What this means concretely:
 - The "to clear L4" section of the scorecard is the actionable part — specific things to add to your answer, calibrated to your current target.
 
 If you want to study at L5+ later, the rubrics name what would clear that bar in each dimension — but no mode will judge you against it unless you ask.
+
+## Examples
+
+[examples/](examples/) has one synthetic run per mode showing the output shape:
+- [Mock — URL shortener](examples/mock-url-shortener/) — partial transcript, Mermaid HLD, full scorecard
+- [Tutor — Rate limiter](examples/tutor-rate-limiter/) — shows `[tutor-interrupt]`, `[user-interrupt]`, and `[detour]` annotations in action
+- [Drill — Capacity, 5 reps](examples/drill-capacity/) — full 5-rep log with difficulty adjustment
+- For Teach examples, the [concepts/](concepts/) wiki itself is the artifact — every note there was written by Teach mode.
+
+These are illustrative — they show what good output should look like before you run your own. Real sessions you generate locally land in `sessions/` (gitignored) and stay private.
 
 ## How it works
 

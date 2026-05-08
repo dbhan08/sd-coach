@@ -1,0 +1,12 @@
+graph LR
+  Client[Client Browser]
+  LB[Load Balancer]
+  API[API Server]
+  Cache[CDN / HTTP Cache<br/>read-only, immutable]
+  DB[(Postgres<br/>short_code → long_url<br/>UNIQUE on short_code)]
+
+  Client -- POST /shorten<br/>GET /:code --> LB
+  LB --> API
+  API -- GET /:code<br/>cache hit returns 301 --> Cache
+  Cache -- miss --> API
+  API -- read/write --> DB
